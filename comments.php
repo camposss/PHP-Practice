@@ -9,7 +9,14 @@
 </head>
 <body>
 
+<?php
 
+//This function below displays text
+
+echo "hello student";
+
+
+?>
 
 </body>
 </html>
