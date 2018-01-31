@@ -3,6 +3,9 @@
 include "db.php";
 include 'functions.php';
 
+    updateData();
+
+
 
 ?>
 <!doctype html>
@@ -19,6 +22,7 @@ include 'functions.php';
 <body>
 <div class="container">
     <div class="col-xs-6">
+        <h1>UPDATE DATA</h1>
         <form action="login_update.php" method="post">
             <div class="form-group">
                 <label for="username">Username</label>

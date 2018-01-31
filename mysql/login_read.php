@@ -1,42 +1,28 @@
-
 <?php
-
-// Read Data
-
-//THE FOLLOWING IS A SQL COMMAND
-$query= "SELECT * FROM users";
-
-$result = mysqli_query($conn, $query);
-
-if(!$result){
-    die('Query failed' .mysqli_error() );
-}
-
+include "db.php";
+include "functions.php";
 
 ?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+
 <div class="container">
-    <div class="col-sm-6">
+    <div class="col-xs-6">
+        <form action="login_read.php" method="get">
+            <button type="submit" name="submit">Get Data</button>
+        </form>
         <?php
-
-        //will return an associative array with the key value pairs and be able to read the columns
-        //the fetch array method takes 2 parameters, the second being the result type;
-
-
-        while($row =mysqli_fetch_array($result,MYSQLI_ASSOC)){
-
-            //the pre element is displayed in a fixed-width font, preserving spaces and line breaks;
-            //we wrap the print_r result in pre tag to make it readable like .pretty in MONGO DB
-            ?>
-            <pre>
-                <?php
-                print_r($row);
-                ?>
-            </pre>
-        <?php
-
-        }
+            showReadData();
         ?>
-
     </div>
 </div>
-
+</body>
