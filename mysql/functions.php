@@ -1,23 +1,6 @@
 <?php
 include "db.php";
-//include "login.php";
 
-//function readData(){
-//    if (isset ($_GET['submit'])) {
-//        global $conn;
-//        $query = "SELECT * FROM users";
-//
-//        $result = mysqli_query($conn, $query);
-//
-//        if (!$result) {
-//            die('Query failed' . mysqli_error());
-//        } else {
-//            echo 'the connections is working';
-//        }
-//
-//
-//    }
-//}
 function showReadData(){
     if(isset ($_GET['submit']) ) {
 
@@ -50,11 +33,26 @@ function showReadData(){
 
 }
 function createData(){
+    $conn = mysqli_connect('localhost', 'root', 'root','loginapp',3306);
+
     if(isset ($_POST['submit']) ){
         $username =$_POST['username'];
         $password=$_POST['password'];
 
-        $conn = mysqli_connect('localhost', 'root', 'root','loginapp',3306);
+
+        //must sanitize data before it gets to SQL.
+        //function takes our connection and the thing you want to sanitize as 2nd parameter
+        $username = mysqli_real_escape_string($conn, $username);
+        $password = mysqli_real_escape_string($conn, $password);
+
+        $hashFormat= "$2y$10$";
+        $salt = "iusesomecrazystrings22";
+
+        $hash_and_salt= $hashFormat. $salt;
+
+        $password= crypt($password, $hash_and_salt);
+
+
 
         if($conn){
             echo 'we are connected';
